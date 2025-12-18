@@ -162,11 +162,11 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               setIsFocused(false);
               props.onBlur?.(e);
             }}
-            placeholder={variant === 'floating' ? ' ' : props.placeholder}
+            placeholder={variant === 'floating' ? '' : props.placeholder}
             className={`
               w-full px-4 py-3.5 rounded-xl
               bg-input border-2 text-foreground
-              placeholder:text-muted-foreground
+              placeholder:text-transparent
               transition-all duration-200 ease-out resize-none
               min-h-[120px]
               ${error 

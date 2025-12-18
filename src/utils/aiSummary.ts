@@ -1,10 +1,21 @@
 /**
  * AI Summary Generator Utility
- * Generates professional resume summaries based on user input
- * Currently uses mock responses; can be connected to real AI API
+ * Generates professional resume summaries using Google Gemini AI
  */
 
-// Template summaries for different experience levels and roles
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Initialize Gemini AI
+const getGeminiAPI = () => {
+  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+  if (!apiKey) {
+    console.warn('Gemini API key not found, using fallback templates');
+    return null;
+  }
+  return new GoogleGenerativeAI(apiKey);
+};
+
+// Fallback templates for when API is unavailable
 const summaryTemplates = {
   'entry-level': [
     "Motivated {role} with a strong foundation in {skills}. Eager to apply academic knowledge and recent project experience to contribute to innovative teams. Quick learner with excellent problem-solving abilities and a passion for continuous growth.",
@@ -23,7 +34,6 @@ const summaryTemplates = {
   ],
 };
 
-// Fallback role-specific additions
 const roleAdditions: Record<string, string> = {
   'developer': 'Passionate about building user-centric applications and optimizing performance.',
   'engineer': 'Committed to engineering excellence and solving complex technical challenges.',
@@ -34,39 +44,25 @@ const roleAdditions: Record<string, string> = {
 };
 
 /**
- * Simulates AI delay for realistic UX
+ * Generates fallback summary using templates
  */
-const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-/**
- * Generates a professional summary based on role, skills, and experience level
- */
-export async function generateAISummary(
+function generateFallbackSummary(
   role: string,
   skills: string[],
   experienceLevel: 'entry-level' | 'mid-level' | 'senior'
-): Promise<string> {
-  // Simulate API delay
-  await simulateDelay(1500 + Math.random() * 1000);
-
-  // Get appropriate templates
+): string {
   const templates = summaryTemplates[experienceLevel];
   const template = templates[Math.floor(Math.random() * templates.length)];
-
-  // Format role (use provided or generic)
+  
   const formattedRole = role || 'professional';
-
-  // Format skills (join top 5 skills or use generic)
   const formattedSkills = skills.length > 0
     ? skills.slice(0, 5).join(', ')
     : 'modern technologies';
-
-  // Replace placeholders
+  
   let summary = template
     .replace('{role}', formattedRole)
     .replace('{skills}', formattedSkills);
-
-  // Add role-specific addition
+  
   const roleLower = role.toLowerCase();
   let addition = roleAdditions['default'];
   for (const [key, value] of Object.entries(roleAdditions)) {
@@ -75,10 +71,54 @@ export async function generateAISummary(
       break;
     }
   }
-
+  
   summary = `${summary} ${addition}`;
-
   return summary;
+}
+
+/**
+ * Generates a professional summary using Gemini AI
+ */
+export async function generateAISummary(
+  role: string,
+  skills: string[],
+  experienceLevel: 'entry-level' | 'mid-level' | 'senior'
+): Promise<string> {
+  try {
+    const genAI = getGeminiAPI();
+    
+    // Use fallback if API not available
+    if (!genAI) {
+      return generateFallbackSummary(role, skills, experienceLevel);
+    }
+
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+
+    const prompt = `Write a professional, concise resume summary (2-3 sentences, max 100 words) for a ${experienceLevel} ${role || 'professional'} with skills in ${skills.join(', ') || 'various technologies'}. 
+
+Requirements:
+- Make it compelling and achievement-focused
+- Use action words and power verbs
+- Highlight key strengths relevant to the role
+- Keep it professional and ATS-friendly
+- Do not use bullet points, just paragraph format
+- Do not include headers or labels, just the summary text`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    // Clean up the response
+    const cleanedText = text
+      .replace(/^(Summary:|Professional Summary:)/i, '')
+      .trim();
+
+    return cleanedText || generateFallbackSummary(role, skills, experienceLevel);
+  } catch (error) {
+    console.error('Error generating AI summary:', error);
+    // Fallback to template-based generation
+    return generateFallbackSummary(role, skills, experienceLevel);
+  }
 }
 
 /**

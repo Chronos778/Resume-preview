@@ -388,9 +388,8 @@ export function ResumePreview() {
                       exit="exit"
                       className="mb-8"
                     >
-                      <h2 className="resume-section-title">
-                        <Sparkles className="w-5 h-5 text-primary" />
-                        Professional Summary
+                      <h2 className="text-xl font-bold text-foreground mb-3 pb-2 border-b-2 border-primary/30 uppercase tracking-wide">
+                        PROFESSIONAL SUMMARY
                       </h2>
                       <p className="text-foreground/90 leading-relaxed text-[15px]">{summary}</p>
                     </motion.section>
@@ -406,37 +405,21 @@ export function ResumePreview() {
                       exit="exit"
                       className="mb-8"
                     >
-                      <h2 className="resume-section-title">
-                        <Code className="w-5 h-5 text-primary" />
-                        Technical Skills
+                      <h2 className="text-xl font-bold text-foreground mb-3 pb-2 border-b-2 border-primary/30 uppercase tracking-wide">
+                        SKILLS
                       </h2>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex flex-wrap gap-2">
                         {skills.map((skill, index) => (
-                          <motion.div
+                          <motion.span
                             key={skill.id}
                             variants={itemVariants}
                             initial="hidden"
                             animate="visible"
                             transition={{ delay: index * 0.05 }}
-                            className="space-y-1.5"
+                            className="text-sm font-medium text-foreground"
                           >
-                            <div className="flex justify-between text-sm">
-                              <span className="font-semibold text-foreground">
-                                {skill.name}
-                              </span>
-                              <span className="text-muted-foreground text-xs">
-                                {skill.proficiency}%
-                              </span>
-                            </div>
-                            <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${skill.proficiency}%` }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                              />
-                            </div>
-                          </motion.div>
+                            {skill.name}{index < skills.length - 1 ? ' • ' : ''}
+                          </motion.span>
                         ))}
                       </div>
                     </motion.section>
@@ -452,9 +435,8 @@ export function ResumePreview() {
                       exit="exit"
                       className="mb-8"
                     >
-                      <h2 className="resume-section-title">
-                        <Briefcase className="w-5 h-5 text-primary" />
-                        Professional Experience
+                      <h2 className="text-xl font-bold text-foreground mb-3 pb-2 border-b-2 border-primary/30 uppercase tracking-wide">
+                        PROFESSIONAL EXPERIENCE
                       </h2>
                       <div className="space-y-5">
                         {experiences
@@ -482,9 +464,11 @@ export function ResumePreview() {
                                 </p>
                               )}
                               {exp.description && (
-                                <p className="text-sm text-foreground/80 leading-relaxed whitespace-pre-line">
-                                  {exp.description}
-                                </p>
+                                <ul className="text-sm text-foreground/80 leading-relaxed space-y-1 list-disc list-inside">
+                                  {exp.description.split('\n').filter(line => line.trim()).map((line, i) => (
+                                    <li key={i}>{line.trim().replace(/^[-•]\s*/, '')}</li>
+                                  ))}
+                                </ul>
                               )}
                             </motion.div>
                           ))}
@@ -502,9 +486,8 @@ export function ResumePreview() {
                       exit="exit"
                       className="mb-8"
                     >
-                      <h2 className="resume-section-title">
-                        <GraduationCap className="w-5 h-5 text-primary" />
-                        Education
+                      <h2 className="text-xl font-bold text-foreground mb-3 pb-2 border-b-2 border-primary/30 uppercase tracking-wide">
+                        EDUCATION
                       </h2>
                       <div className="space-y-5">
                         {education
@@ -551,9 +534,8 @@ export function ResumePreview() {
                       animate="visible"
                       exit="exit"
                     >
-                      <h2 className="resume-section-title">
-                        <FolderKanban className="w-5 h-5 text-primary" />
-                        Notable Projects
+                      <h2 className="text-xl font-bold text-foreground mb-3 pb-2 border-b-2 border-primary/30 uppercase tracking-wide">
+                        PROJECTS
                       </h2>
                       <div className="space-y-5">
                         {projects
@@ -581,9 +563,11 @@ export function ResumePreview() {
                                 )}
                               </div>
                               {proj.description && (
-                                <p className="text-sm text-foreground/80 mb-2 whitespace-pre-line">
-                                  {proj.description}
-                                </p>
+                                <ul className="text-sm text-foreground/80 mb-2 space-y-1 list-disc list-inside">
+                                  {proj.description.split('\n').filter(line => line.trim()).map((line, i) => (
+                                    <li key={i}>{line.trim().replace(/^[-•]\s*/, '')}</li>
+                                  ))}
+                                </ul>
                               )}
                               {proj.technologies && (
                                 <div className="flex flex-wrap gap-1.5">

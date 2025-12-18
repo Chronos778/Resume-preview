@@ -1,0 +1,908 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   PREMIUM THEME SYSTEM - Light Mode (Default)
+   ============================================ */
+:root {
+  /* Base colors */
+  --background: #fafafa;
+  --background-secondary: #f5f5f5;
+  --foreground: #0a0a0a;
+  --foreground-secondary: #525252;
+
+  /* Card & Surfaces */
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --card-hover: #fafafa;
+
+  /* Primary accent */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #f5f5f5;
+  --secondary-hover: #e5e5e5;
+  --secondary-foreground: #525252;
+
+  /* Muted */
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+
+  /* Accent (for highlights) */
+  --accent: #3b82f6;
+  --accent-light: rgba(59, 130, 246, 0.1);
+  --accent-foreground: #ffffff;
+
+  /* Borders & Dividers */
+  --border: #e5e5e5;
+  --border-hover: #d4d4d4;
+  --divider: #f0f0f0;
+
+  /* Input fields */
+  --input: #ffffff;
+  --input-border: #e5e5e5;
+  --input-focus: #2563eb;
+  --ring: rgba(37, 99, 235, 0.5);
+
+  /* Status colors */
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  --gradient-background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.15);
+
+  /* Resume-specific */
+  --resume-bg: #ffffff;
+  --resume-shadow: 0 4px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+.dark {
+  --background: #09090b;
+  --background-secondary: #18181b;
+  --foreground: #fafafa;
+  --foreground-secondary: #a1a1aa;
+
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --card-hover: #27272a;
+
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-foreground: #09090b;
+
+  --secondary: #27272a;
+  --secondary-hover: #3f3f46;
+  --secondary-foreground: #a1a1aa;
+
+  --muted: #27272a;
+  --muted-foreground: #71717a;
+
+  --accent: #60a5fa;
+  --accent-light: rgba(96, 165, 250, 0.1);
+  --accent-foreground: #09090b;
+
+  --border: #27272a;
+  --border-hover: #3f3f46;
+  --divider: #27272a;
+
+  --input: #18181b;
+  --input-border: #3f3f46;
+  --input-focus: #3b82f6;
+  --ring: rgba(59, 130, 246, 0.5);
+
+  --success: #34d399;
+  --success-light: rgba(52, 211, 153, 0.15);
+  --warning: #fbbf24;
+  --error: #f87171;
+  --error-light: rgba(248, 113, 113, 0.15);
+
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  --gradient-background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+
+  --glass-bg: rgba(24, 24, 27, 0.8);
+  --glass-border: rgba(63, 63, 70, 0.5);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.2);
+
+  --resume-bg: #1f1f23;
+  --resume-shadow: 0 4px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   ACCENT COLOR VARIATIONS
+   ============================================ */
+.accent-blue {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
+  --accent: #3b82f6;
+  --accent-light: rgba(59, 130, 246, 0.1);
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+.dark.accent-blue {
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --accent: #60a5fa;
+  --accent-light: rgba(96, 165, 250, 0.1);
+}
+
+.accent-purple {
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-light: #ede9fe;
+  --accent: #8b5cf6;
+  --accent-light: rgba(139, 92, 246, 0.1);
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+.dark.accent-purple {
+  --primary: #8b5cf6;
+  --primary-hover: #a78bfa;
+  --primary-light: rgba(139, 92, 246, 0.15);
+  --accent: #a78bfa;
+  --accent-light: rgba(167, 139, 250, 0.1);
+}
+
+.accent-green {
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-light: #d1fae5;
+  --accent: #10b981;
+  --accent-light: rgba(16, 185, 129, 0.1);
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+}
+
+.dark.accent-green {
+  --primary: #10b981;
+  --primary-hover: #34d399;
+  --primary-light: rgba(16, 185, 129, 0.15);
+  --accent: #34d399;
+  --accent-light: rgba(52, 211, 153, 0.1);
+}
+
+.accent-orange {
+  --primary: #c2410c;
+  --primary-hover: #9a3412;
+  --primary-light: #ffedd5;
+  --accent: #f97316;
+  --accent-light: rgba(249, 115, 22, 0.1);
+  --gradient-primary: linear-gradient(135deg, #f97316 0%, #eab308 100%);
+}
+
+.dark.accent-orange {
+  --primary: #f97316;
+  --primary-hover: #fb923c;
+  --primary-light: rgba(249, 115, 22, 0.15);
+  --accent: #fb923c;
+  --accent-light: rgba(251, 146, 60, 0.1);
+}
+
+.accent-rose {
+  --primary: #e11d48;
+  --primary-hover: #be123c;
+  --primary-light: #ffe4e6;
+  --accent: #f43f5e;
+  --accent-light: rgba(244, 63, 94, 0.1);
+  --gradient-primary: linear-gradient(135deg, #f43f5e 0%, #f97316 100%);
+}
+
+.dark.accent-rose {
+  --primary: #f43f5e;
+  --primary-hover: #fb7185;
+  --primary-light: rgba(244, 63, 94, 0.15);
+  --accent: #fb7185;
+  --accent-light: rgba(251, 113, 133, 0.1);
+}
+
+/* ============================================
+   THEME PRESETS
+   ============================================ */
+.preset-minimal {
+  --primary: #171717;
+  --primary-hover: #262626;
+  --primary-light: #f5f5f5;
+  --primary-foreground: #ffffff;
+  --accent: #525252;
+  --accent-light: #f5f5f5;
+  --gradient-primary: linear-gradient(135deg, #171717 0%, #525252 100%);
+  --ring: rgba(23, 23, 23, 0.5);
+}
+
+.dark.preset-minimal {
+  --primary: #fafafa;
+  --primary-hover: #e5e5e5;
+  --primary-light: #262626;
+  --primary-foreground: #171717;
+  --accent: #d4d4d4;
+  --accent-light: #262626;
+  --gradient-primary: linear-gradient(135deg, #fafafa 0%, #a3a3a3 100%);
+  --ring: rgba(250, 250, 250, 0.5);
+}
+
+.preset-modern {
+  /* Modern uses the selected accent color as primary */
+  /* No overrides needed as it uses default variables */
+}
+
+.preset-creative {
+  /* Creative uses more vibrant gradients and glass effects */
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+.dark.preset-creative {
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Background gradient overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--gradient-background);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ============================================
+   FOCUS STYLES
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   TRANSITIONS
+   ============================================ */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================
+   RESUME PREVIEW STYLES
+   ============================================ */
+.resume-preview {
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.resume-preview h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.resume-preview h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resume-preview h2::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.resume-preview h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+
+.resume-paper {
+  background: var(--resume-bg);
+  box-shadow: var(--resume-shadow);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+/* Timeline indicator for experience */
+.timeline-item {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 3.5px;
+  top: 1.5rem;
+  bottom: -1rem;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+/* ============================================
+   INPUT ANIMATIONS
+   ============================================ */
+.input-wrapper {
+  position: relative;
+}
+
+.floating-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  padding: 0 4px;
+}
+
+.floating-label.active,
+.input-field:focus~.floating-label,
+.input-field:not(:placeholder-shown)~.floating-label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--primary);
+  background: var(--card);
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  background: var(--input);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-field:hover {
+  border-color: var(--border-hover);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.input-field.with-icon {
+  padding-left: 40px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  transition: color 0.2s;
+}
+
+.input-field:focus~.input-icon {
+  color: var(--primary);
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   SKILL TAG STYLES
+   ============================================ */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: var(--accent-light);
+  color: var(--primary);
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Skill proficiency dots */
+.skill-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.skill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.skill-dot.filled {
+  background: var(--primary);
+}
+
+/* ============================================
+   SECTION CARD STYLES
+   ============================================ */
+.section-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.section-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.section-header {
+  padding: 16px 20px;
+  background: var(--gradient-subtle);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-header:hover {
+  background: var(--secondary);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.section-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.section-content {
+  padding: 20px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ============================================
+   AI GENERATION STYLES
+   ============================================ */
+.ai-generating {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-generating::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--primary-light) 50%,
+      transparent 100%);
+  animation: shimmer 1.5s infinite;
+}
+
+.ai-text-highlight {
+  background: linear-gradient(120deg,
+      var(--primary-light) 0%,
+      transparent 50%);
+  background-size: 200% 100%;
+  animation: highlight-sweep 1s ease-out forwards;
+}
+
+@keyframes highlight-sweep {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: 0% 0;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .resume-paper {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .resume-paper::before {
+    display: none;
+  }
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+@media (max-width: 768px) {
+  .resume-preview h1 {
+    font-size: 1.875rem;
+  }
+
+  .section-content {
+    padding: 16px;
+  }
+}
+
+/* ============================================
+   THEME PRESET STYLES
+   ============================================ */
+
+/* Minimal - Clean black & white, no colors */
+.preset-minimal {
+  --primary: #000000;
+  --primary-hover: #1a1a1a;
+  --accent: #333333;
+  --accent-foreground: #ffffff;
+}
+
+.dark.preset-minimal {
+  --primary: #ffffff;
+  --primary-hover: #e5e5e5;
+  --accent: #cccccc;
+  --accent-foreground: #000000;
+}
+
+/* Modern - Default with accent colors (already applied) */
+.preset-modern {
+  /* Uses default accent color variables */
+}
+
+/* Creative - Enhanced gradients everywhere */
+.preset-creative .bg-primary,
+.preset-creative .from-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+}
+
+.preset-creative .text-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.preset-creative .bg-gradient-to-r,
+.preset-creative .bg-gradient-to-br {
+  background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+}
